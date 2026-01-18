@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>快乐储蓄罐 - 捕捉生活的小确幸</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ff906b",
+                        "background-light": "#fafafa",
+                        "background-dark": "#2d2925",
+                        "accent-yellow": "#FDDD8C",
+                        "accent-mint": "#6BBDA2",
+                        "sticky-yellow": "#fef3c7",
+                        "sticky-blue": "#e0f2fe",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "Noto Sans SC", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', 'Noto Sans SC', sans-serif; }
+        .paper-texture {
+            background-image: radial-gradient(#ead4cd 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes coin-drop {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 0; }
+            20% { opacity: 1; }
+            80% { transform: translateY(100px) rotate(360deg); opacity: 1; }
+            100% { transform: translateY(200px) rotate(720deg); opacity: 0; }
+        }
+        .animate-float { animation: float 3s ease-in-out infinite; }
+        .washi-tape {
+            background: rgba(255, 144, 107, 0.4);
+            transform: rotate(-3deg);
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "@google/genai": "https://esm.sh/@google/genai@^1.37.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#1d100c] dark:text-gray-100 transition-colors duration-300 paper-texture overflow-x-hidden">
+    <div id="root"></div>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
