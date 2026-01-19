@@ -11,7 +11,7 @@ export const RecordView: React.FC<RecordViewProps> = ({ onSave, onCancel }) => {
   const [selectedImage, setSelectedImage] = useState<string | undefined>(undefined);
   const [isSaving, setIsSaving] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
-  
+
   const fileInputRef = useRef<HTMLInputElement>(null);
   const today = new Date().toISOString().split('T')[0];
 
@@ -29,16 +29,17 @@ export const RecordView: React.FC<RecordViewProps> = ({ onSave, onCancel }) => {
 
   const handleSave = () => {
     if (!content.trim()) return;
-    
+
     setIsSaving(true);
-    
+
+    // Simulate coin animation and delay for effect
     // Simulate coin animation and delay for effect
     setTimeout(() => {
       setShowSuccess(true);
       setTimeout(() => {
         onSave(content, today, selectedImage);
-      }, 3500); // Leave enough time for the message to be read
-    }, 1200);
+      }, 1500); // Reduced from 3500ms for better UX
+    }, 800); // Reduced from 1200ms
   };
 
   const triggerAlbum = () => {
@@ -54,7 +55,7 @@ export const RecordView: React.FC<RecordViewProps> = ({ onSave, onCancel }) => {
             <span className="material-symbols-outlined text-3xl text-[#b48a00] font-bold">monetization_on</span>
           </div>
           <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex gap-1">
-             <span className="material-symbols-outlined text-primary animate-ping">favorite</span>
+            <span className="material-symbols-outlined text-primary animate-ping">favorite</span>
           </div>
         </div>
         <h2 className="text-3xl md:text-4xl font-black text-primary mb-6 animate-in slide-in-from-bottom-4 duration-700 delay-300">存入成功！</h2>
@@ -83,16 +84,16 @@ export const RecordView: React.FC<RecordViewProps> = ({ onSave, onCancel }) => {
       <div className="flex flex-col gap-8 w-full md:w-1/3">
         <div className="space-y-4">
           <h1 className="text-4xl md:text-5xl font-extrabold text-[#1d100c] dark:text-white leading-[1.1] tracking-tight">
-            记录<br/>
+            记录<br />
             <span className="text-primary">此时此刻</span>的喜悦
           </h1>
           <p className="text-[#a15c45] dark:text-gray-400 text-lg leading-relaxed">
             把你的开心瞬间存起来，它们是抵御未来阴霾的宝贵财富。
           </p>
         </div>
-        
+
         <div className="bg-white dark:bg-[#3d3935] p-6 rounded-xl shadow-lg border border-[#f4eae6] dark:border-[#4d4945]">
-           <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center justify-between mb-4">
             <span className="text-sm font-bold text-primary uppercase tracking-widest">存入硬币</span>
             <span className="material-symbols-outlined text-primary">monetization_on</span>
           </div>
@@ -100,7 +101,7 @@ export const RecordView: React.FC<RecordViewProps> = ({ onSave, onCancel }) => {
             存入后，你可以随时在首页回顾这份心情。
           </p>
           <div className="w-full h-2 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
-             <div className="h-full bg-primary transition-all duration-1000" style={{ width: content.length > 0 ? '100%' : '0%' }}></div>
+            <div className="h-full bg-primary transition-all duration-1000" style={{ width: content.length > 0 ? '100%' : '0%' }}></div>
           </div>
         </div>
       </div>
@@ -118,25 +119,25 @@ export const RecordView: React.FC<RecordViewProps> = ({ onSave, onCancel }) => {
           </div>
 
           <div className="flex-1 flex flex-col">
-            <textarea 
+            <textarea
               disabled={isSaving}
               value={content}
               onChange={(e) => setContent(e.target.value)}
-              className="w-full flex-1 bg-transparent border-none focus:ring-0 text-[#1d100c] text-xl md:text-2xl font-medium leading-[1.8] placeholder:text-[#a15c45]/40 resize-none py-2" 
-              placeholder="此刻发生了什么开心的事？" 
+              className="w-full flex-1 bg-transparent border-none focus:ring-0 text-[#1d100c] text-xl md:text-2xl font-medium leading-[1.8] placeholder:text-[#a15c45]/40 resize-none py-2"
+              placeholder="此刻发生了什么开心的事？"
               style={{
                 backgroundImage: 'linear-gradient(transparent, transparent 44px, #a15c4520 44px)',
                 backgroundSize: '100% 45px'
               }}
             />
-            
+
             <div className="mt-4 flex flex-wrap gap-4">
               {selectedImage && (
                 <div className="relative group w-40 h-40">
                   <img src={selectedImage} className="w-full h-full object-cover rounded-xl shadow-md border-4 border-white rotate-2 hover:rotate-0 transition-transform" alt="joy moment" />
                   {!isSaving && (
-                    <button 
-                      onClick={() => setSelectedImage(undefined)} 
+                    <button
+                      onClick={() => setSelectedImage(undefined)}
                       className="absolute -top-3 -right-3 bg-red-500 text-white rounded-full p-1.5 shadow-lg hover:scale-110 transition-transform z-10"
                     >
                       <span className="material-symbols-outlined text-sm">close</span>
@@ -149,16 +150,16 @@ export const RecordView: React.FC<RecordViewProps> = ({ onSave, onCancel }) => {
 
           <div className="mt-8 pt-8 border-t border-[#a15c45]/10 flex flex-wrap items-center justify-between gap-6">
             <div className="flex gap-4 items-center">
-              <button 
+              <button
                 disabled={isSaving}
                 onClick={onCancel}
                 className="text-[#a15c45] font-bold hover:underline px-2 disabled:opacity-30"
               >
                 取消
               </button>
-              
+
               <div className="flex gap-2">
-                <button 
+                <button
                   disabled={isSaving}
                   onClick={triggerAlbum}
                   className="flex items-center gap-2 text-primary font-bold hover:bg-white/50 px-4 py-2 rounded-full transition-all border border-primary/20 disabled:opacity-30"
@@ -168,16 +169,16 @@ export const RecordView: React.FC<RecordViewProps> = ({ onSave, onCancel }) => {
                 </button>
               </div>
 
-              <input 
-                type="file" 
-                ref={fileInputRef} 
-                className="hidden" 
-                accept="image/*" 
-                onChange={handleFileChange} 
+              <input
+                type="file"
+                ref={fileInputRef}
+                className="hidden"
+                accept="image/*"
+                onChange={handleFileChange}
               />
             </div>
-            
-            <button 
+
+            <button
               disabled={!content.trim() || isSaving}
               onClick={handleSave}
               className={`bg-primary hover:bg-[#ff7b52] disabled:opacity-50 disabled:cursor-not-allowed active:scale-95 text-white px-10 py-4 rounded-xl font-bold text-lg shadow-lg shadow-primary/30 flex items-center gap-3 transition-all ${isSaving ? 'animate-pulse scale-95' : ''}`}
